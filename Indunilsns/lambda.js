@@ -7,7 +7,7 @@ exports.handler = function (event, context, callback) {
         MessageAttributes: {
             'AWS.SNS.SMS.SMSType': {
                 'DataType': 'String',
-                'StringValue': 'Promotional'
+                'StringValue': 'Transactional'
             },
             'AWS.SNS.SMS.SenderID': {
                 'DataType': 'String',
@@ -23,6 +23,7 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             // error handling goes here
             console.log("failll");
+            console.log(err);
         });
 
     callback(null, { "message": "Successfully executed" });
