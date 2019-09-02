@@ -2,12 +2,8 @@ let AWS = require('aws-sdk');
 const sns = new AWS.SNS();
 
 exports.handler = function (event, context, callback) {
-
-    sns.createPlatformEndpoint({
-        PlatformApplicationArn: 'arn:aws:sns:us-east-1:318300609668:app/MPNS/snsAppTestCafe',
-        Token: '3245242',
-        CustomUserData: 'Data',
-        Attributes: {}
+    sns.deleteEndpoint({
+        EndpointArn: 'arn:aws:sns:us-east-1:318300609668:endpoint/MPNS/snsAppTestCafe/1'
     }).promise()
         .then(data => {
             console.log(data);
