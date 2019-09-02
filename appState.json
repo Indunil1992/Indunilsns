@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "Indunilsns/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst sns = new AWS.SNS();\n\nexports.handler = function (event, context, callback) {\n    sns.publish({\n        Message: 'test1',\n        MessageAttributes: {\n            'AWS.SNS.SMS.SMSType': {\n                'DataType': 'String',\n                'StringValue': 'Promotional'\n            },\n            'AWS.SNS.SMS.SenderID': {\n                'DataType': 'String',\n                'StringValue': 'indunil'\n            }\n        },\n        PhoneNumber: '+94713245242'\n    }).promise()\n        .then(data => {\n            // your code goes here\n            console.log(\"pass\");\n            console.log(data);\n        })\n        .catch(err => {\n            // error handling goes here\n            console.log(\"fail\");\n            console.log(err);\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nconst sns = new AWS.SNS();\n\nexports.handler = function (event, context, callback) {\n    sns.publish({\n        Message: 'test1',\n        MessageAttributes: {\n            'AWS.SNS.SMS.SMSType': {\n                'DataType': 'String',\n                'StringValue': 'Promotional'\n            }\n        },\n        PhoneNumber: '+94713245242'\n    }).promise()\n        .then(data => {\n            // your code goes here\n            console.log(\"pass\");\n            console.log(data);\n        })\n        .catch(err => {\n            // error handling goes here\n            console.log(\"fail\");\n            console.log(err);\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -32,8 +32,8 @@
         },
         "triggers": [],
         "testCases": {
-          "3f2575e7-b9ed-42f5-b44d-a897f564263f": {
-            "id": "3f2575e7-b9ed-42f5-b44d-a897f564263f",
+          "715293d0-9c63-4821-89e4-5acbe89d8620": {
+            "id": "715293d0-9c63-4821-89e4-5acbe89d8620",
             "name": "Test event",
             "functionId": "e320faf4-6b71-493b-94d6-a4b48ef76f40",
             "event": "{\r\n    \"key1\": \"value1\",\r\n    \"key2\": \"value2\",\r\n    \"key3\": \"value3\"\r\n}",
@@ -100,7 +100,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1567404274854
+    "lastSave": 1567405369299
   },
   "VCS_STATE": {
     "provider": "GitHub",
