@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "Indunilsns/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst sns = new AWS.SNS();\n\nexports.handler = function (event, context, callback) {\n    sns.deleteEndpoint({\n        EndpointArn: 'arn:aws:sns:us-east-1:318300609668:endpoint/MPNS/snsAppTestCafe/1'\n    }).promise()\n        .then(data => {\n            console.log(data);\n            // your code goes here\n        })\n        .catch(err => {\n            console.log(err);\n            // error handling goes here\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nconst sns = new AWS.SNS();\n\nexports.handler = function (event, context, callback) {\n    sns.createPlatformEndpoint({\n        PlatformApplicationArn: 'arn:aws:sns:us-east-1:318300609668:app/MPNS/snsAppTestCafe',\n        Token: 'token1',\n        CustomUserData: 'data1',\n        Attributes: {},\n    }).promise()\n        .then(data => {\n            // your code goes here\n        })\n        .catch(err => {\n            // error handling goes here\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -108,7 +108,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1567427584893
+    "lastSave": 1567429065308
   },
   "VCS_STATE": {
     "provider": "GitHub",
