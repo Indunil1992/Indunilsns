@@ -5,9 +5,9 @@ exports.handler = function (event, context, callback) {
 
     sns.createPlatformEndpoint({
         PlatformApplicationArn: 'arn:aws:sns:us-east-1:318300609668:app/MPNS/snsAppTestCafe',
-        Token: '123456789',
+        Token: '3245242',
         CustomUserData: 'Data',
-        Attributes: {},
+        Attributes: {}
     }).promise()
         .then(data => {
             console.log(data);
