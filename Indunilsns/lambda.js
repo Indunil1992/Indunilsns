@@ -1,20 +1,28 @@
 let AWS = require('aws-sdk');
-const sns = new AWS.SNS();
+let SL_AWS = require('slappforge-sdk-aws');
+const sqs = new SL_AWS.SQS(AWS);
 
 exports.handler = function (event, context, callback) {
-    sns.publish({
-        Message: 'msg2',
-        Subject: 'subjct2',
-        MessageAttributes: {},
-        MessageStructure: 'String',
-        TopicArn: 'arn:aws:sns:us-east-1:318300609668:testIndunilSNS1'
+    sqs.receiveMessage({
+        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/testindunil`,
+        AttributeNames: ['All'],
+        MaxNumberOfMessages: '1',
+        VisibilityTimeout: '30',
+        WaitTimeSeconds: '0',
+        MessageAttributeNames: ['test1', '2', '3', '4']
     }).promise()
-        .then(data => {
-                        console.log("pass");
-            // your code goes here
+        .then(receivedMsgData => {
+            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {
+                let receivedMessages = receivedMsgData.Messages;
+                receivedMessages.forEach(message => {
+                    // your logic to access each message through out the loop. Each message is available under variable message 
+                    // within this block
+                });
+            } else {
+                // No messages to process
+            }
         })
         .catch(err => {
-            console.log("fail");
             // error handling goes here
         });
 
