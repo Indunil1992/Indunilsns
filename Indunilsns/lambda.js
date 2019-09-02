@@ -2,28 +2,18 @@ let AWS = require('aws-sdk');
 const sns = new AWS.SNS();
 
 exports.handler = function (event, context, callback) {
-    sns.publish({
-        Message: 'test1',
-        MessageAttributes: {
-            'AWS.SNS.SMS.SMSType': {
-                'DataType': 'String',
-                'StringValue': 'Transactional'
-            },
-            'AWS.SNS.SMS.SenderID': {
-                'DataType': 'String',
-                'StringValue': 'A1234123'
-            }
-        },
-        PhoneNumber: '+94713245242'
+
+    sns.createPlatformEndpoint({
+        PlatformApplicationArn: 'arn:aws:sns:us-east-1:318300609668:app/MPNS/snsAppTestCafe',
+        Token: '123456789',
+        CustomUserData: 'Data',
+        Attributes: {},
     }).promise()
         .then(data => {
             // your code goes here
-            console.log("paass");
         })
         .catch(err => {
             // error handling goes here
-            console.log("failll");
-            console.log(err);
         });
 
     callback(null, { "message": "Successfully executed" });
