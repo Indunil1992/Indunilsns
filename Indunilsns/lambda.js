@@ -11,20 +11,16 @@ exports.handler = function (event, context, callback) {
             },
             'AWS.SNS.SMS.SenderID': {
                 'DataType': 'String',
-                'StringValue': '@ID'
+                'StringValue': 'A1234123'
             }
         },
         PhoneNumber: '+94713245242'
     }).promise()
         .then(data => {
             // your code goes here
-            console.log("pass");
-            console.log(data);
         })
         .catch(err => {
             // error handling goes here
-            console.log("fail");
-            console.log(err);
         });
 
     callback(null, { "message": "Successfully executed" });
