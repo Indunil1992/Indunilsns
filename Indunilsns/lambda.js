@@ -7,10 +7,12 @@ exports.handler = function (event, context, callback) {
     }).promise()
         .then(data => {
             console.log(data);
+            console.log("passs");
             // your code goes here
         })
         .catch(err => {
             console.log(err);
+            console.log("fails");
             // error handling goes here
         });
 
