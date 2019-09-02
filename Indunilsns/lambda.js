@@ -18,9 +18,11 @@ exports.handler = function (event, context, callback) {
     }).promise()
         .then(data => {
             // your code goes here
+            console.log("pass");
         })
         .catch(err => {
             // error handling goes here
+            console.log("fail");
         });
 
     callback(null, { "message": "Successfully executed" });
